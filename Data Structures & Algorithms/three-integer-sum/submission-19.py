@@ -1,0 +1,29 @@
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        res=[]
+        nums.sort()
+
+        for i, a in enumerate(nums):
+            
+            if i>0 and a==nums[i-1]: #if duplicate -skip and mvoe pointer
+                continue
+            
+            l, r = i+1, len(nums)-1
+
+            while l<r:
+                treesums =nums[l]+nums[r]+a
+
+                if treesums>0:
+                    r-=1
+                elif treesums<0:
+                    l+=1
+                else:
+                    res.append([a,nums[l],nums[r]])
+                    l+=1
+                    while l<r and nums[l]==nums[l-1]:# skip duplicate move l/r/both
+                        l+=1
+                        r-=1
+        return res
+
+
+        
